@@ -1,2 +1,99 @@
-<h1>Hello, world!</h1>
-<h2>-GSBuilds</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>GSBuilds</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Google Fonts Lato -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900,900i&display=swap" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <!-- MDBootstrap Datatables  -->
+    <link href="css/addons/datatables.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  
+  <body>
+    <div style="height: 100vh">
+      <div id="banner">
+        <img src="images/gsb.png" class="img-fluid" alt="Responsive image">
+        <div id="title"><span id="gsb-title">GSB</span>uilds</div>
+        <div id="headline">The definitive source for GSB startups</div>
+        <div id="info">
+          <a href="#" data-toggle="modal" data-target="#info-modal">
+            <i class="fa fa-info-circle"></i>
+          </a>
+        </div>
+        <div id="meta">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9ueOYAXAr74CIY4S5jBBZ8006jop2JVqMl6ib6Uz7sCypsQ/viewform?usp=sf_link" target="_blank" class="btn btn-light" role="button" id="add-btn">Add a company</a>
+          <a href="mailto:kdf@stanford.edu,dbent@stanford.edu?subject=GSBuilds" target="_blank" class="btn btn-outline-light" role="button" id="update-btn">Update a company</a>
+        </div>
+      </div>
+
+      <div id="content">
+
+        <table id="dt" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th class="th-sm">Company Name</th>
+              <th class="th-sm">Founding Year</th>
+              <th class="th-sm">GSB Founders</th>
+              <th class="th-sm">Stage</th>
+              <th class="th-sm">Category</th>
+              <th class="th-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Company Name</th>
+              <th>Founding Year</th>
+              <th>GSB Founder 1</th>
+              <th>Stage</th>
+              <th>Category</th>
+              <th>Description</th>
+            </tr>
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="info-modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">About</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>This site was made with <i class="fas fa-heart"></i> by <a href="https://www.linkedin.com/in/khalilfuller/" target="_blank">Khalil</a> and <a href="https://www.linkedin.com/in/drewbent/" target="_blank">Drew</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="js/addons/datatables.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

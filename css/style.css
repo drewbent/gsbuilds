@@ -1,0 +1,93 @@
+#banner {
+  position: relative;
+}
+
+#headline {
+  color: #fff;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 30%;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Lato';
+  font-size: 48px;
+}
+
+#title {
+  color: #fff;
+  position: absolute;
+  left: 100px;
+  top: 15px;
+  font-size: 36px;
+  font-family: 'Lato';
+}
+
+#title #gsb-title {
+  font-weight: 900;
+}
+
+#meta {
+  position: absolute;
+  bottom: 12%;
+  width: 100%;
+  text-align: center;
+}
+
+#info {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: white;
+}
+
+#info i {
+  color: white;
+  font-size: 24px;
+}
+
+#info i:hover {
+  color: #dad7cb;
+}
+
+#content {
+  padding: 20px;
+}
+
+#dt td {
+  font-family: 'Lato';
+  font-size: 12px;
+}
+
+#dt td a {
+  text-decoration: underline;
+}
+
+#dt td a:hover {
+  color: #8c1515;
+}
+
+#dt thead th, #dt tfoot th {
+  font-weight: bold;
+  color: #8c1515;
+}
+
+@media (max-width: 850px) {
+  #headline {
+    font-size: 24px;
+  }
+
+  #title {
+    font-size: 18px;
+  }
+
+  #meta a.btn {
+    padding:2px 4px;
+    font-size: 70%;
+    line-height: 1.5;
+  }
+}
+
+h5{
+  font-size: 1.4em;
+}
