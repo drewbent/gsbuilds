@@ -111,3 +111,7 @@
 h5{
   font-size: 1.4em;
 }
+
+#js-rotating1, #js-rotating2 {
+  border-bottom: 3px solid white;
+}

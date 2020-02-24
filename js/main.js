@@ -72,7 +72,7 @@ $(document).ready(function () {
 $("#js-rotating1").Morphext({
   animation: "bounceIn",
   separator: ",",
-  speed: 2000,
+  speed: 3300,
   complete: function () {
       // Called after the entrance animation is executed.
   }
@@ -80,7 +80,7 @@ $("#js-rotating1").Morphext({
 $("#js-rotating2").Morphext({
   animation: "bounceIn",
   separator: ",",
-  speed: 2000,
+  speed: 3300,
   complete: function () {
       // Called after the entrance animation is executed.
   }
