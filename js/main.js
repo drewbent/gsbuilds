@@ -69,6 +69,23 @@ $(document).ready(function () {
   });
 });
 
+$("#js-rotating1").Morphext({
+  animation: "bounceIn",
+  separator: ",",
+  speed: 2000,
+  complete: function () {
+      // Called after the entrance animation is executed.
+  }
+});
+$("#js-rotating2").Morphext({
+  animation: "bounceIn",
+  separator: ",",
+  speed: 2000,
+  complete: function () {
+      // Called after the entrance animation is executed.
+  }
+});
+
 String.prototype.format = String.prototype.f = function() {
   var s = this,
       i = arguments.length;
