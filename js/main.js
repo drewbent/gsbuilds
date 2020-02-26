@@ -63,7 +63,7 @@ $(document).ready(function () {
 
     // https://datatables.net/reference/option/
     $('#dt').DataTable({
-      pageLength: 100
+      pageLength: 50
     });
     $('.dataTables_length').addClass('bs-select');
   });
