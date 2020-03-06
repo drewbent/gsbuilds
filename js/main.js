@@ -8,7 +8,7 @@ $(document).ready(function () {
       const companyName = entry["gsx$companyname"]["$t"];
       const companyWebsite = entry["gsx$companywebsite"]["$t"];
       if (companyWebsite) {
-        company += '<a href="{0}" target="_blank">{1}</a>'.f(companyWebsite, companyName);
+        company += '<a href="{0}" target="_blank">{1}</a>'.f(linkify(companyWebsite), companyName);
       } else {
         company += '{0}'.f(companyName);
       }
@@ -22,21 +22,21 @@ $(document).ready(function () {
       const linkedin3 = entry["gsx$gsber3linkedin"]["$t"];
       if (founder1) {
         if (linkedin1) {
-          founders += '<a href="{0}" target="_blank">{1}</a>'.f(linkedin1, founder1);
+          founders += '<a href="{0}" target="_blank">{1}</a>'.f(linkify(linkedin1), founder1);
         } else {
           founders += '{0}'.f(founder1);
         }
       }
       if (founder2) {
         if (founder2 && linkedin2) {
-          founders += ', <a href="{0}" target="_blank">{1}</a>'.f(linkedin2, founder2);
+          founders += ', <a href="{0}" target="_blank">{1}</a>'.f(linkify(linkedin2), founder2);
         } else if (founder2) {
           founders += ', {0}'.f(founder2);
         }
       }
       if (founder3) {
         if (linkedin3 && linkedin3) {
-          founders += ', <a href="{0}" target="_blank">{1}</a>'.f(linkedin3, founder3);
+          founders += ', <a href="{0}" target="_blank">{1}</a>'.f(linkify(linkedin3), founder3);
         } else if (founder3) {
           founders += ', {0}'.f(founder3);
         }
@@ -85,6 +85,15 @@ $("#js-rotating2").Morphext({
       // Called after the entrance animation is executed.
   }
 });
+
+const linkify = function(link) {
+  // Add "http://" to the beginning of the url if needed.
+  if (link.includes("//")) {
+    return link;
+  } else {
+    return "http://" + link;
+  }
+};
 
 String.prototype.format = String.prototype.f = function() {
   var s = this,
