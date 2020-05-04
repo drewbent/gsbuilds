@@ -3,6 +3,8 @@ $(document).ready(function () {
   $.getJSON(formResultsURL, function(data) {
     const entries = data.feed.entry;
 
+    $("#dt tbody tr:first-child").remove();
+    
     $.each(entries, function(index, entry) {
       var company = "";
       const companyName = entry["gsx$companyname"]["$t"];
