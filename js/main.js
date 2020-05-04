@@ -42,6 +42,18 @@ $(document).ready(function () {
         }
       }
 
+      const founder1Components = founder1.split(/[ ,]+/);
+      var alumComponents = [];
+      $.each(founder1Components, function(index, component) {
+        if (!/\d/.test(component)) {
+          alumComponents.push(component);
+        }
+      });
+      const founder1First = alumComponents[0];
+      const founder1Last = alumComponents[alumComponents.length - 1];
+      const alumURL = `https://alumni.stanford.edu/get/page/directory/search/results-basic?first_name=${founder1First}&last_name=${founder1Last}`
+      const alumLink = `<a href="${alumURL}" target="_blank">Contact Founder</a>`
+
       $("#dt tbody").append(" \
       <tr> \
         <td>{0}</td> \
@@ -50,6 +62,7 @@ $(document).ready(function () {
         <td>{3}</td> \
         <td>{4}</td> \
         <td>{5}</td> \
+        <td>{6}</td> \
       </tr> \
       ".f(
         company,
@@ -57,7 +70,8 @@ $(document).ready(function () {
         founders,
         entry["gsx$companystage"]["$t"],
         entry["gsx$category"]["$t"],
-        entry["gsx$companydescription"]["$t"]
+        entry["gsx$companydescription"]["$t"],
+        alumLink
       ));
     });
 
