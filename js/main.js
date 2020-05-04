@@ -7,7 +7,7 @@ $(document).ready(function () {
       var company = "";
       const companyName = entry["gsx$companyname"]["$t"];
       const companyWebsite = entry["gsx$companywebsite"]["$t"];
-      if (companyWebsite) {
+      if (companyWebsite && companyWebsite!="-") {
         company += '<a href="{0}" target="_blank">{1}</a>'.f(linkify(companyWebsite), companyName);
       } else {
         company += '{0}'.f(companyName);
@@ -75,9 +75,16 @@ $(document).ready(function () {
       ));
     });
 
+    const noResultsStr = `
+      No company was found. Consider <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9ueOYAXAr74CIY4S5jBBZ8006jop2JVqMl6ib6Uz7sCypsQ/viewform?usp=sf_link" target="_blank">adding the company here</a>.
+      `;
+
     // https://datatables.net/reference/option/
     $('#dt').DataTable({
-      pageLength: 50
+      "pageLength": 50,
+      "language": {
+        "zeroRecords": noResultsStr
+      },
     });
     $('.dataTables_length').addClass('bs-select');
   });
