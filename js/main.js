@@ -19,6 +19,19 @@ $(document).ready(function () {
     ]
   });
 
+  var prevSearchTerm = "";
+  dt.on("search.dt", function() {
+    const newSearchTerm = dt.search();
+
+    if (newSearchTerm != prevSearchTerm) {
+      prevSearchTerm = newSearchTerm;
+      
+      setTimeout(checkIfSearchTermRemainedSame.bind(
+          undefined, dt, prevSearchTerm),
+        1000);
+    }
+  });
+
   const formResultsURL = "https://spreadsheets.google.com/feeds/list/1HwSDZvZeYfjrLr-5rrSObaYKtkUETqAAUvrgjngMK-I/1/public/values?alt=json";
   $.getJSON(formResultsURL, function(data) {
     const entries = data.feed.entry;
@@ -103,6 +116,15 @@ $(document).ready(function () {
     addFilters();
   });
 });
+
+const checkIfSearchTermRemainedSame = function(dt, st) {
+  if (dt.search() == st) {
+    gtag('event', 'click', {
+      'event_category': 'Search',
+      'event_label': st
+    });
+  }
+}
 
 $("#js-rotating1").Morphext({
   animation: "bounceIn",
