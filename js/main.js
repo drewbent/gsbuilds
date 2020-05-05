@@ -119,7 +119,7 @@ $(document).ready(function () {
 
 const checkIfSearchTermRemainedSame = function(dt, st) {
   if (dt.search() == st) {
-    gtag('event', 'click', {
+    gtag('event', 'search', {
       'event_category': 'Search',
       'event_label': st
     });
