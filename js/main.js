@@ -4,15 +4,18 @@ $(document).ready(function () {
     const entries = data.feed.entry;
 
     $("#dt tbody tr:first-child").remove();
-    
+
     $.each(entries, function(index, entry) {
       var company = "";
       const companyName = entry["gsx$companyname"]["$t"];
       const companyWebsite = entry["gsx$companywebsite"]["$t"];
+
+      const trackingCodeWebsite = `onClick="ga('send', 'event', { eventCategory: 'CompanyWebsite', eventAction: 'click', eventLabel: '${companyName}'});"`;
+
       if (companyWebsite && companyWebsite!="-") {
-        company += '<a href="{0}" target="_blank">{1}</a>'.f(linkify(companyWebsite), companyName);
+        company += `<a href="${linkify(companyWebsite)}" target="_blank" ${trackingCodeWebsite}>${companyName}</a>`;
       } else {
-        company += '{0}'.f(companyName);
+        company += `${companyName}`;
       }
 
       var founders = "";
@@ -22,25 +25,28 @@ $(document).ready(function () {
       const linkedin2 = entry["gsx$gsber2linkedin"]["$t"];
       const founder3 = entry["gsx$gsber3onfoundingteam-nameandclassyear"]["$t"];
       const linkedin3 = entry["gsx$gsber3linkedin"]["$t"];
+      const trackingCodeFounder1 = `onClick="ga('send', 'event', { eventCategory: 'FounderLinkedIn', eventAction: 'click', eventLabel: '${founder1}', eventValue: '1'});"`;
+      const trackingCodeFounder2 = `onClick="ga('send', 'event', { eventCategory: 'FounderLinkedIn', eventAction: 'click', eventLabel: '${founder2}', eventValue: '2'});"`;
+      const trackingCodeFounder3 = `onClick="ga('send', 'event', { eventCategory: 'FounderLinkedIn', eventAction: 'click', eventLabel: '${founder3}', eventValue: '3'});"`;
       if (founder1) {
         if (linkedin1) {
-          founders += '<a href="{0}" target="_blank">{1}</a>'.f(linkify(linkedin1), founder1);
+          founders += `<a href="${linkedin1}" target="_blank" ${trackingCodeFounder1}>${founder1}</a>`;
         } else {
-          founders += '{0}'.f(founder1);
+          founders += `${founder1}`;
         }
       }
       if (founder2) {
         if (founder2 && linkedin2) {
-          founders += ', <a href="{0}" target="_blank">{1}</a>'.f(linkify(linkedin2), founder2);
+          founders += `, <a href="${linkedin2}" target="_blank" ${trackingCodeFounder2}>${founder2}</a>`;
         } else if (founder2) {
-          founders += ', {0}'.f(founder2);
+          founders += `, ${founder2}`;
         }
       }
       if (founder3) {
         if (linkedin3 && linkedin3) {
-          founders += ', <a href="{0}" target="_blank">{1}</a>'.f(linkify(linkedin3), founder3);
+          founders += `, <a href="${linkedin3}" target="_blank" ${trackingCodeFounder3}>${founder3}</a>`;
         } else if (founder3) {
-          founders += ', {0}'.f(founder3);
+          founders += `, ${founder3}`;
         }
       }
 
@@ -54,7 +60,8 @@ $(document).ready(function () {
       const founder1First = alumComponents[0];
       const founder1Last = alumComponents[alumComponents.length - 1];
       const alumURL = `https://alumni.stanford.edu/get/page/directory/search/results-basic?first_name=${founder1First}&last_name=${founder1Last}`
-      const alumLink = `<a href="${alumURL}" target="_blank">Contact Founder</a>`
+      const trackingCodeContactFounder= `onClick="ga('send', 'event', { eventCategory: 'FounderContact', eventAction: 'click', eventLabel: '${founder1}'});"`;
+      const alumLink = `<a href="${alumURL}" target="_blank" ${trackingCodeContactFounder}>Contact Founder</a>`
 
       $("#dt tbody").append(" \
       <tr> \
