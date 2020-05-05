@@ -1,9 +1,29 @@
 $(document).ready(function () {
+  const noResultsStr = `
+      No company was found. Consider <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9ueOYAXAr74CIY4S5jBBZ8006jop2JVqMl6ib6Uz7sCypsQ/viewform?usp=sf_link" target="_blank">adding the company here</a>.
+      `;
+  $('.dataTables_length').addClass('bs-select');
+
+  // https://datatables.net/reference/option/
+  const dt = $('#dt').DataTable({
+    "pageLength": 50,
+    "language": {
+      "zeroRecords": noResultsStr
+    },
+    "columnDefs": [
+      {
+          "targets": [ 7 ],
+          "visible": false,
+          "searchable": true
+      }
+    ]
+  });
+
   const formResultsURL = "https://spreadsheets.google.com/feeds/list/1HwSDZvZeYfjrLr-5rrSObaYKtkUETqAAUvrgjngMK-I/1/public/values?alt=json";
   $.getJSON(formResultsURL, function(data) {
     const entries = data.feed.entry;
 
-    $("#dt tbody tr:first-child").remove();
+    dt.rows().remove();
 
     $.each(entries, function(index, entry) {
       var company = "";
@@ -63,61 +83,24 @@ $(document).ready(function () {
       const trackingCodeContactFounder= `onClick="gtag('event', 'click', { event_category: 'FounderContact', event_label: '${founder1First} ${founder1Last}'});"`;
       const alumLink = `<a href="${alumURL}" target="_blank" ${trackingCodeContactFounder}>Contact Founder</a>`
 
-      $("#dt tbody").append(" \
-      <tr> \
-        <td>{0}</td> \
-        <td>{1}</td> \
-        <td>{2}</td> \
-        <td>{3}</td> \
-        <td>{4}</td> \
-        <td>{5}</td> \
-        <td>{6}</td> \
-      </tr> \
-      ".f(
+      const foundersAffiliation1 = entry["gsx$foundersaffiliation1"]["$t"];
+      const foundersAffiliation2 = entry["gsx$foundersaffiliation2"]["$t"];
+      const foundersAffiliation = `${foundersAffiliation1}; ${foundersAffiliation2}`
+
+      dt.row.add([
         company,
         entry["gsx$yearcompanywasstarted"]["$t"],
         founders,
         entry["gsx$companystage"]["$t"],
         entry["gsx$category"]["$t"],
         entry["gsx$companydescription"]["$t"],
-        alumLink
-      ));
+        alumLink,
+        foundersAffiliation
+      ]);
     });
 
-    const noResultsStr = `
-      No company was found. Consider <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9ueOYAXAr74CIY4S5jBBZ8006jop2JVqMl6ib6Uz7sCypsQ/viewform?usp=sf_link" target="_blank">adding the company here</a>.
-      `;
-
-    // https://datatables.net/reference/option/
-    $('#dt').DataTable({
-      "pageLength": 50,
-      "language": {
-        "zeroRecords": noResultsStr
-      },
-      "initComplete": function () {
-        this.api().columns().every(function(i) {
-          if (i==1 || i==3 || i==4) {
-            var column = this;
-            var select = $('<select  class="browser-default custom-select form-control-sm"><option value="" selected>All</option></select>')
-                .appendTo( $(column.footer()).empty() )
-                .on( 'change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex(
-                        $(this).val()
-                    );
-
-                    column
-                      .search( val ? '^'+val+'$' : '', true, false )
-                      .draw();
-                } );
-
-            column.data().unique().sort().each( function ( d, j ) {
-                select.append( '<option value="'+d+'">'+d+'</option>' )
-            } );
-          }          
-        });
-      }
-    });
-    $('.dataTables_length').addClass('bs-select');
+    dt.columns.adjust().draw();
+    addFilters();
   });
 });
 
@@ -145,6 +128,29 @@ const linkify = function(link) {
   } else {
     return "http://" + link;
   }
+};
+
+const addFilters = function() {
+  $("#dt").DataTable().columns().every(function(i) {
+    if (i==1 || i==3 || i==4) {
+      var column = this;
+      var select = $('<select  class="browser-default custom-select form-control-sm"><option value="" selected>All</option></select>')
+          .appendTo( $(column.footer()).empty() )
+          .on( 'change', function () {
+              var val = $.fn.dataTable.util.escapeRegex(
+                  $(this).val()
+              );
+
+              column
+                .search( val ? '^'+val+'$' : '', true, false )
+                .draw();
+          } );
+
+      column.data().unique().sort().each( function ( d, j ) {
+          select.append( '<option value="'+d+'">'+d+'</option>' )
+      } );
+    }          
+  });
 };
 
 String.prototype.format = String.prototype.f = function() {
