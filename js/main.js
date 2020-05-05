@@ -25,9 +25,9 @@ $(document).ready(function () {
       const linkedin2 = entry["gsx$gsber2linkedin"]["$t"];
       const founder3 = entry["gsx$gsber3onfoundingteam-nameandclassyear"]["$t"];
       const linkedin3 = entry["gsx$gsber3linkedin"]["$t"];
-      const trackingCodeFounder1 = `onClick="ga('send', 'event', { eventCategory: 'FounderLinkedIn', eventAction: 'click', eventLabel: '${founder1}', eventValue: '1'});"`;
-      const trackingCodeFounder2 = `onClick="ga('send', 'event', { eventCategory: 'FounderLinkedIn', eventAction: 'click', eventLabel: '${founder2}', eventValue: '2'});"`;
-      const trackingCodeFounder3 = `onClick="ga('send', 'event', { eventCategory: 'FounderLinkedIn', eventAction: 'click', eventLabel: '${founder3}', eventValue: '3'});"`;
+      const trackingCodeFounder1 = `onClick="ga('send', 'event', { eventCategory: 'FounderLinkedIn', eventAction: 'click', eventLabel: '${$.trim(founder1.split(/[(']/)[0])}', eventValue: '1'});"`;
+      const trackingCodeFounder2 = `onClick="ga('send', 'event', { eventCategory: 'FounderLinkedIn', eventAction: 'click', eventLabel: '${$.trim(founder2.split(/[(']/)[0])}', eventValue: '2'});"`;
+      const trackingCodeFounder3 = `onClick="ga('send', 'event', { eventCategory: 'FounderLinkedIn', eventAction: 'click', eventLabel: '${$.trim(founder3.split(/[(']/)[0])}', eventValue: '3'});"`;
       if (founder1) {
         if (linkedin1) {
           founders += `<a href="${linkedin1}" target="_blank" ${trackingCodeFounder1}>${founder1}</a>`;
@@ -60,7 +60,7 @@ $(document).ready(function () {
       const founder1First = alumComponents[0];
       const founder1Last = alumComponents[alumComponents.length - 1];
       const alumURL = `https://alumni.stanford.edu/get/page/directory/search/results-basic?first_name=${founder1First}&last_name=${founder1Last}`
-      const trackingCodeContactFounder= `onClick="ga('send', 'event', { eventCategory: 'FounderContact', eventAction: 'click', eventLabel: '${founder1}'});"`;
+      const trackingCodeContactFounder= `onClick="ga('send', 'event', { eventCategory: 'FounderContact', eventAction: 'click', eventLabel: '${founder1First} ${founder1Last}'});"`;
       const alumLink = `<a href="${alumURL}" target="_blank" ${trackingCodeContactFounder}>Contact Founder</a>`
 
       $("#dt tbody").append(" \
