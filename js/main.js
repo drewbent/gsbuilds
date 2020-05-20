@@ -32,7 +32,7 @@ $(document).ready(function () {
     }
   });
 
-  const formResultsURL = "https://spreadsheets.google.com/feeds/list/1HwSDZvZeYfjrLr-5rrSObaYKtkUETqAAUvrgjngMK-I/1/public/values?alt=json";
+  const formResultsURL = "https://spreadsheets.google.com/feeds/list/1XNMmiIgk03lnqzphlzxRBN1_u8BLXbarHzVhaXVwnKo/1/public/values?alt=json";
   $.getJSON(formResultsURL, function(data) {
     const entries = data.feed.entry;
 
